@@ -211,7 +211,7 @@ p { margin: 0 0 1em; }
 .stat { background: var(--bg-2); border-radius: var(--radius); padding: 26px 24px; }
 .stat strong { display: block; font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 3.4rem); color: var(--plum); line-height: 1; margin-bottom: .3em; }
 .stat span { color: var(--muted); font-size: .95rem; }
-@media (max-width: 760px) { .numbers { grid-template-columns: repeat(2, 1fr); } .stat { padding: 20px 16px; } }
+@media (max-width: 760px) { .numbers { grid-template-columns: repeat(2, 1fr); } .stat { padding: 20px 16px; } .stat:last-child { grid-column: span 2; } }
 @media (max-width: 400px) { .numbers { gap: 10px; } .stat { padding: 18px 14px; } .stat strong { font-size: 2rem; } .stat span { font-size: .85rem; } }
 
 /* ===== Journey ===== */
