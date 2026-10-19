@@ -15,12 +15,13 @@
   <style>
     .lens-head { max-width: var(--wrap); margin: 0 auto; padding: clamp(40px, 7vw, 80px) var(--gutter) 20px; }
     .lens-head h1 { font-size: clamp(2.6rem, 8vw, 5rem); font-weight: 800; letter-spacing: -.02em; }
-    .lens-head p { max-width: 36em; color: var(--muted); font-size: 1.1rem; }
+    .lens-head p:not(.eyebrow):not(.hand) { max-width: 36em; color: var(--muted); font-size: 1.1rem; }
     .gallery { max-width: var(--wrap); margin: 0 auto; padding: 20px var(--gutter) 80px; columns: 3 260px; column-gap: 16px; }
     .gallery .pic { break-inside: avoid; margin: 0 0 16px; cursor: zoom-in; border-radius: 14px; }
     .gallery .pic:not(:has(img)) { cursor: default; }
     .gallery .pic img { height: auto; transition: transform .5s ease; }
     .gallery .pic:hover img { transform: scale(1.04); }
+    @media (max-width: 560px) { .gallery { columns: 2; column-gap: 10px; } .gallery .pic { margin-bottom: 10px; border-radius: 10px; } }
     .gallery .pic:nth-child(3n+1) { aspect-ratio: 3 / 4; background: linear-gradient(160deg, #B9D4C2, #6E9C83); }
     .gallery .pic:nth-child(3n+2) { aspect-ratio: 4 / 3; background: linear-gradient(160deg, #F5C9A8, #C77D8E); }
     .gallery .pic:nth-child(3n)   { aspect-ratio: 1;     background: linear-gradient(160deg, #BFD3EE, #7B8FC6); }

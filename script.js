@@ -42,7 +42,8 @@ function countUp(el) {
   const prefix = el.dataset.prefix || '';
   const suffix = el.dataset.suffix || '';
   const format = n => prefix + n.toLocaleString('en-IN') + suffix;
-  if (reduceMotion) { el.textContent = format(target); return; }
+  if (reduceMotion) return; // real numbers are already in the HTML
+  el.textContent = format(0);
   const start = performance.now();
   const duration = 1400;
   const tick = now => {
