@@ -1,0 +1,9 @@
+Drop photos in this folder with these exact names. They appear on the site automatically.
+
+richa.jpg       your main photo (portrait, about 800 x 1000 px)
+thor.jpg        Thor (landscape)
+dog-1.jpg       any dog you love (square)
+dog-2.jpg       any dog you love (square)
+lens/1.jpg ... lens/12.jpg   your nature photos for the "Through my lens" page
+
+Tip: keep each photo under 500 KB so the site stays fast on phones.

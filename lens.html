@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Through My Lens · Richa Saxena</title>
+  <meta name="description" content="Photographs by Richa Saxena, mostly nature, clicked to keep memories alive.">
+  <meta name="theme-color" content="#3E1F5C">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%233E1F5C'/><text x='50' y='68' font-size='56' text-anchor='middle' fill='white' font-family='Georgia'>R</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Fraunces:opsz,wght,SOFT@9..144,400..800,50..100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+  <style>
+    .lens-head { max-width: var(--wrap); margin: 0 auto; padding: clamp(40px, 7vw, 80px) var(--gutter) 20px; }
+    .lens-head h1 { font-size: clamp(2.6rem, 8vw, 5rem); font-weight: 800; letter-spacing: -.02em; }
+    .lens-head p { max-width: 36em; color: var(--muted); font-size: 1.1rem; }
+    .gallery { max-width: var(--wrap); margin: 0 auto; padding: 20px var(--gutter) 80px; columns: 3 260px; column-gap: 16px; }
+    .gallery .pic { break-inside: avoid; margin: 0 0 16px; cursor: zoom-in; border-radius: 14px; }
+    .gallery .pic:not(:has(img)) { cursor: default; }
+    .gallery .pic img { height: auto; transition: transform .5s ease; }
+    .gallery .pic:hover img { transform: scale(1.04); }
+    .gallery .pic:nth-child(3n+1) { aspect-ratio: 3 / 4; background: linear-gradient(160deg, #B9D4C2, #6E9C83); }
+    .gallery .pic:nth-child(3n+2) { aspect-ratio: 4 / 3; background: linear-gradient(160deg, #F5C9A8, #C77D8E); }
+    .gallery .pic:nth-child(3n)   { aspect-ratio: 1;     background: linear-gradient(160deg, #BFD3EE, #7B8FC6); }
+    .gallery .pic:has(img) { aspect-ratio: auto; }
+    .gallery .pic::before { color: rgba(255,255,255,.9); }
+    .lightbox {
+      position: fixed; inset: 0; z-index: 100; background: rgba(15, 8, 22, .92); display: grid; place-items: center;
+      padding: 20px; opacity: 0; pointer-events: none; transition: opacity .3s;
+    }
+    .lightbox.open { opacity: 1; pointer-events: auto; }
+    .lightbox img { max-height: 86vh; max-width: 100%; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+    .lb-btn {
+      position: absolute; border: 0; background: rgba(255,255,255,.12); color: #fff; width: 48px; height: 48px;
+      border-radius: 50%; font-size: 1.4rem; cursor: pointer;
+    }
+    .lb-btn:hover { background: rgba(255,255,255,.25); }
+    .lb-close { top: 16px; right: 16px; }
+    .lb-prev { left: 12px; top: 50%; translate: 0 -50%; }
+    .lb-next { right: 12px; top: 50%; translate: 0 -50%; }
+  </style>
+</head>
+<body>
+
+<header class="nav">
+  <a href="index.html" class="logo" aria-label="Richa Saxena, home">richa<span>.</span></a>
+  <nav class="nav-links" style="position:static;opacity:1;transform:none;pointer-events:auto;flex-direction:row;padding:0;background:none;border:0">
+    <a href="index.html" class="nav-cta">← Back home</a>
+  </nav>
+</header>
+
+<main>
+  <section class="lens-head">
+    <p class="eyebrow reveal">Through my lens</p>
+    <h1 class="reveal">I click to keep memories alive.</h1>
+    <p class="reveal">Mostly nature. Always trying to capture the essence of something beautiful before the moment passes.</p>
+    <p class="hand reveal">Tap any photo to see it bigger 📸</p>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <!-- Add photos as images/lens/1.jpg, 2.jpg, 3.jpg ... Missing ones show a soft placeholder. -->
+    <figure class="pic reveal" data-label="🌿"><img src="images/lens/1.jpg" alt="Nature photograph by Richa" loading="lazy" onerror="this.remove()"></figure>
+    <figure class="pic reveal" data-label="🌅"><img src="images/lens/2.jpg" alt="Nature photograph by Richa" loading="lazy" onerror="this.remove()"></figure>
+    <figure class="pic reveal" data-label="🌸"><img src="images/lens/3.jpg" alt="Nature photograph by Richa" loading="lazy" onerror="this.remove()"></figure>
+    <figure class="pic reveal" data-label="⛰️"><img src="images/lens/4.jpg" alt="Nature photograph by Richa" loading="lazy" onerror="this.remove()"></figure>
+    <figure class="pic reveal" data-label="🌊"><img src="images/lens/5.jpg" alt="Nature photograph by Richa" loading="lazy" onerror="this.remove()"></figure>
+    <figure class="pic reveal" data-label="🍂"><img src="images/lens/6.jpg" alt="Nature photograph by Richa" loading="lazy" onerror="this.remove()"></figure>
+    <figure class="pic reveal" data-label="🌙"><img src="images/lens/7.jpg" alt="Nature photograph by Richa" loading="lazy" onerror="this.remove()"></figure>
+    <figure class="pic reveal" data-label="🌼"><img src="images/lens/8.jpg" alt="Nature photograph by Richa" loading="lazy" onerror="this.remove()"></figure>
+    <figure class="pic reveal" data-label="☁️"><img src="images/lens/9.jpg" alt="Nature photograph by Richa" loading="lazy" onerror="this.remove()"></figure>
+    <figure class="pic reveal" data-label="🌳"><img src="images/lens/10.jpg" alt="Nature photograph by Richa" loading="lazy" onerror="this.remove()"></figure>
+    <figure class="pic reveal" data-label="🦋"><img src="images/lens/11.jpg" alt="Nature photograph by Richa" loading="lazy" onerror="this.remove()"></figure>
+    <figure class="pic reveal" data-label="🌄"><img src="images/lens/12.jpg" alt="Nature photograph by Richa" loading="lazy" onerror="this.remove()"></figure>
+  </section>
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-btn lb-close" aria-label="Close">✕</button>
+  <button class="lb-btn lb-prev" aria-label="Previous photo">‹</button>
+  <img alt="">
+  <button class="lb-btn lb-next" aria-label="Next photo">›</button>
+</div>
+
+<footer class="footer">
+  <div class="peek" aria-hidden="true">🐕</div>
+  <p>Made with kindness (and a song on repeat).</p>
+  <p class="small">© <span id="year"></span> Richa Saxena · <a href="https://www.linkedin.com/in/imricha/" target="_blank" rel="noopener">LinkedIn</a></p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+<script>
+  (() => {
+    const box = document.getElementById('lightbox');
+    const big = box.querySelector('img');
+    let photos = [];
+    let index = 0;
+
+    const show = i => {
+      index = (i + photos.length) % photos.length;
+      big.src = photos[index].src;
+      big.alt = photos[index].alt;
+    };
+    const close = () => box.classList.remove('open');
+
+    document.getElementById('gallery').addEventListener('click', e => {
+      const img = e.target.closest('.pic')?.querySelector('img');
+      if (!img) return;
+      photos = [...document.querySelectorAll('#gallery img')];
+      show(photos.indexOf(img));
+      box.classList.add('open');
+    });
+    box.querySelector('.lb-close').addEventListener('click', close);
+    box.querySelector('.lb-prev').addEventListener('click', () => show(index - 1));
+    box.querySelector('.lb-next').addEventListener('click', () => show(index + 1));
+    box.addEventListener('click', e => { if (e.target === box) close(); });
+    document.addEventListener('keydown', e => {
+      if (!box.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(index - 1);
+      if (e.key === 'ArrowRight') show(index + 1);
+    });
+
+    // Swipe on phones
+    let startX = null;
+    box.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener('touchend', e => {
+      if (startX === null) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) show(index + (dx < 0 ? 1 : -1));
+      startX = null;
+    });
+  })();
+</script>
+</body>
+</html>
