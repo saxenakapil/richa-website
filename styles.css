@@ -296,6 +296,16 @@ p { margin: 0 0 1em; }
 .p-main .pic { aspect-ratio: 4 / 3; }
 .p2 { transform: rotate(3deg); } .p3 { transform: rotate(-4deg); }
 .polaroid:hover { transform: rotate(0) scale(1.04); z-index: 2; }
+.eaten {
+  --bites: radial-gradient(circle 34px at 100% 14%, transparent 96%, #000 100%),
+           radial-gradient(circle 24px at 80% 0, transparent 96%, #000 100%),
+           radial-gradient(circle 18px at 100% 40%, transparent 96%, #000 100%);
+  -webkit-mask: var(--bites); -webkit-mask-composite: source-in;
+  mask: var(--bites); mask-composite: intersect;
+}
+.chewed { display: grid; place-items: center; background: repeating-linear-gradient(45deg, #F3EEF8 0 12px, #EADFF5 12px 24px); }
+.chewed::before { content: none; }
+.chewed span { font-family: var(--hand); font-size: 1.45rem; line-height: 1.15; text-align: center; color: var(--plum); transform: rotate(-4deg); }
 .paw { position: fixed; pointer-events: none; font-size: 18px; z-index: 60; animation: pawfade 1s forwards; }
 @keyframes pawfade { from { opacity: .9; } to { opacity: 0; transform: translateY(-14px) scale(.6); } }
 @media (max-width: 860px) { .dogs { grid-template-columns: 1fr; } }

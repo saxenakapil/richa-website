@@ -14,12 +14,17 @@
     .lost .dog { font-size: 6rem; display: inline-block; animation: wag 1s ease-in-out infinite; }
     .lost h1 { font-size: clamp(2.4rem, 8vw, 4.4rem); font-weight: 800; margin: .2em 0 .3em; }
     .lost p { color: var(--muted); max-width: 30em; margin: 0 auto 1.6em; font-size: 1.1rem; }
+    .dog-photo { width: min(240px, 60vw); aspect-ratio: 1; object-fit: cover; border-radius: 50%; margin: 0 auto; border: 6px solid #fff; box-shadow: 0 0 0 4px var(--plum), 0 18px 40px -12px rgba(62,31,92,.45); animation: wag 2.4s ease-in-out infinite; }
     @keyframes wag { 50% { transform: rotate(-8deg); } }
   </style>
 </head>
 <body>
   <main class="lost">
-    <div><span class="dog" aria-hidden="true">🐕</span></div>
+    <div class="dog-wrap">
+      <img class="dog-photo" src="/images/404-dog.jpg" alt="A very cute, very guilty-looking dog"
+           onload="document.querySelector('.dog').remove()" onerror="this.remove()">
+      <span class="dog" aria-hidden="true">🐕</span>
+    </div>
     <p class="hand">404</p>
     <h1>A dog ate this page.</h1>
     <p>I'd be upset, but honestly, look at that face. Let's get you back to somewhere that exists.</p>
