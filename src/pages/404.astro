@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import { photo } from '../lib/photos';
+
+const hasDog = Boolean(photo('404-dog'));
+---
+<Base title="A dog ate this page" minimal>
+  <main class="lost">
+    <div class="dog-wrap">
+      {hasDog
+        ? <Photo name="404-dog" alt="A very cute, very guilty-looking dog" class="dog-photo" widths={[240, 480]} sizes="240px" priority />
+        : <span class="dog" aria-hidden="true">🐕</span>}
+    </div>
+    <p class="hand">404</p>
+    <h1>A dog ate this page.</h1>
+    <p>I'd be upset, but honestly, look at that face. Let's get you back to somewhere that exists.</p>
+    <div><a href="/" class="btn btn-primary">Take me home 🏠</a></div>
+  </main>
+</Base>

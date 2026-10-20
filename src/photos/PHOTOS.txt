@@ -1,0 +1,13 @@
+Drop photos in this folder (src/photos) with these exact names. They appear on the site
+automatically, resized and compressed for phones. Until a photo is here, its spot shows
+a soft placeholder.
+
+richa.jpg       your main photo (portrait, about 800 x 1000 px or bigger)
+thor.jpg        Thor (landscape)
+dog-1.jpg       any dog you love (square)
+404-dog.jpg     a cute doggy photo for the "page not found" page (square)
+lens/           your nature photos for the Photos page, named 1.jpg, 2.jpg, 3.jpg ...
+                Add as many as you like; they show in number order.
+                1.jpg and 2.jpg also appear on the home page.
+
+.jpg, .png and .webp all work. Big photos are fine; the site shrinks them for you.

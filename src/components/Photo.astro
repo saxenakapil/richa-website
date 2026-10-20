@@ -1,0 +1,39 @@
+---
+// A photo from src/photos/, resized and compressed by Astro. When the file
+// isn't there yet, the frame shows its soft placeholder and `label` instead.
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import { photo } from '../lib/photos';
+
+interface Props {
+  name?: string;
+  src?: ImageMetadata;
+  alt: string;
+  label?: string;
+  class?: string;
+  as?: 'figure' | 'div';
+  widths?: number[];
+  sizes?: string;
+  priority?: boolean;
+  [attr: string]: unknown;
+}
+
+const {
+  name, src, alt, label = '', class: className, as: Tag = 'figure',
+  widths = [400, 800, 1200], sizes = '(max-width: 860px) 100vw, 50vw', priority = false, ...attrs
+} = Astro.props;
+const img = src ?? (name ? photo(name) : undefined);
+const fit = img ? widths.filter(w => w <= img.width) : [];
+---
+<Tag class:list={['pic', className, !img && 'empty']} data-label={label} {...attrs}>
+  {img && (
+    <Image
+      src={img}
+      alt={alt}
+      widths={fit.length ? fit : [img.width]}
+      sizes={sizes}
+      loading={priority ? 'eager' : 'lazy'}
+      fetchpriority={priority ? 'high' : 'auto'}
+    />
+  )}
+</Tag>

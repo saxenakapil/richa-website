@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import Aurora from '../components/Aurora.astro';
+---
+<Base title="Say hello to Richa" description="Write to Richa Saxena. She reads every message, usually with a song on repeat.">
+<main class="contact-page">
+  <section class="contact">
+    <Aurora />
+    <div class="contact-text">
+      <Photo name="richa" alt="" label="" class="portrait-small" widths={[200, 400]} sizes="120px" />
+      <h1>Let's talk people, culture, or paneer.</h1>
+      <p>Drop me a note. I read every message, usually with a song on repeat.</p>
+      <a class="linkedin" href="https://www.linkedin.com/in/imricha/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        Connect on LinkedIn
+      </a>
+    </div>
+
+    <div class="contact-box glow">
+      <form class="contact-form" id="contact-form" novalidate>
+        <!-- Web3Forms key: public by design, delivers to Richa's Gmail -->
+        <input type="hidden" name="access_key" value="f48808bd-5a6e-4664-91b3-f89b352533df">
+        <input type="hidden" name="subject" value="New message from richasaxena.in">
+        <input type="hidden" name="from_name" value="Richa's Website">
+
+        <label for="cf-email">Your email</label>
+        <input id="cf-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+
+        <label for="cf-message">Your message</label>
+        <textarea id="cf-message" name="message" rows="6" required placeholder="Hi Richa..."></textarea>
+
+        <!-- honeypot: humans never see this field -->
+        <div class="hp" aria-hidden="true">
+          <label for="cf-botcheck">Leave this empty</label>
+          <input id="cf-botcheck" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="h-captcha" data-captcha="true"></div>
+
+        <button type="submit" class="btn btn-primary send">
+          <span class="send-label">Send message</span>
+          <span class="plane" aria-hidden="true">✈️</span>
+        </button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="sent" id="sent" hidden tabindex="-1">
+        <svg class="tick" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg>
+        <h2>Thank you!</h2>
+        <p>Your message is on its way. I'll write back soon. 💜</p>
+        <button type="button" class="btn btn-ghost" id="send-another">Send another message</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script is:inline src="https://web3forms.com/client/script.js" async defer slot="end"></script>
+</Base>

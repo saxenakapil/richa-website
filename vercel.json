@@ -1,0 +1,10 @@
+{
+  "framework": "astro",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/lens.html", "destination": "/photos", "permanent": true },
+    { "source": "/lens", "destination": "/photos", "permanent": true }
+  ]
+}

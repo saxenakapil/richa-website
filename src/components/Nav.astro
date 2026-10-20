@@ -1,0 +1,16 @@
+---
+// Pages, not sections. Add "Writing" here when the blog arrives.
+const links = [
+  { href: '/photos', label: 'Photos' },
+  { href: '/contact', label: 'Say hello', cta: true },
+];
+const here = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="nav">
+  <a href="/" class="logo" aria-label="Richa Saxena, home">richa<span>.</span></a>
+  <nav class="nav-links" aria-label="Main">
+    {links.map(l => (
+      <a href={l.href} class:list={[l.cta && 'nav-cta']} aria-current={here === l.href ? 'page' : undefined}>{l.label}</a>
+    ))}
+  </nav>
+</header>

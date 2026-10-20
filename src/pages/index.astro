@@ -1,0 +1,324 @@
+---
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import Aurora from '../components/Aurora.astro';
+import Scribble from '../components/Scribble.astro';
+import { lensPhotos } from '../lib/photos';
+
+const loves = ['People', 'Culture', 'Possibility', 'Dogs', 'Paneer butter masala', 'Harry Potter', 'Kindness', 'Food & sleep'];
+const quote = 'In a world where you can be anything, be kind.';
+const [lens1, lens2] = lensPhotos();
+---
+<Base title="Richa Saxena">
+<main>
+
+  <section class="hero">
+    <Aurora />
+    <div class="hero-text">
+      <p class="hand hello">Hi, I'm</p>
+      <h1 class="name" aria-label="Richa Saxena">
+        <span class="w" aria-hidden="true"><span>Richa</span></span>{' '}
+        <span class="w" aria-hidden="true"><span>Saxena</span></span>
+      </h1>
+      <p class="tagline">
+        <span style="--i:0">Small-town heart.</span>
+        <span style="--i:1">Strict-teacher energy.</span>
+        <span style="--i:2">Soft spot for every dog I meet.</span>
+      </p>
+      <p class="hero-sub">
+        People and culture leader, former teacher, co-founder of Uniify.
+        I collect people's stories and turn them into <Scribble>kinder, happier workplaces</Scribble>.
+      </p>
+      <div class="hero-actions">
+        <a href="/contact" class="btn btn-primary">Say hello <span aria-hidden="true">👋</span></a>
+        <a href="#about" class="btn btn-ghost">Get to know me</a>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <div class="ring" aria-hidden="true"></div>
+      <Photo name="richa" alt="Richa Saxena smiling" label="Your photo here" class="portrait" priority widths={[400, 640, 900]} sizes="(max-width: 860px) 66vw, 400px" />
+      <span class="sticker" style="--i:0; --rot:-6deg">🐾 dog person</span>
+      <span class="sticker" style="--i:1; --rot:4deg">🍳 creates (or destroys) dishes</span>
+      <span class="sticker" style="--i:2; --rot:-3deg">🎧 song on repeat</span>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      {[0, 1].map(() => loves.map(l => <><span>{l}</span><i>✦</i></>))}
+    </div>
+  </div>
+
+  <section class="section about" id="about">
+    <div class="about-main">
+      <h2>A listener first.</h2>
+      <p class="lead">
+        I was raised in Agra, a small town where neighbours look out for each other and
+        helping someone is just what you do. I've lived in quite a few big cities since,
+        but I still value <Scribble>people over polish</Scribble>.
+      </p>
+      <p>
+        I love meeting different people and hearing their stories. Somewhere in those stories,
+        I found a problem I knew I could solve. (More on that below.)
+      </p>
+      <p>
+        Off the clock, I'm mom to a wonderful, awesome boy, a fiction lover
+        (Harry Potter forever <button class="bolt" type="button" aria-label="A little magic">⚡</button>),
+        and someone who truly believes the best things in life are <Scribble><strong>food and sleep</strong></Scribble>.
+        Everything else is a bonus.
+      </p>
+    </div>
+
+    <aside class="about-side">
+      <div class="music-card glow" data-reveal="rise">
+        <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <p class="music-line">While you're reading this, I'm probably listening to a song for the <strong>100th time</strong> today.</p>
+        <p class="hand music-quote">"If music be the food of love, play on."</p>
+      </div>
+
+      <div class="twist-card" data-reveal="rise">
+        <p class="twist-label">Plot twist</p>
+        <h3>Don't go by the smile.</h3>
+        <p>
+          A colleague once showed our Christmas party photos to her family. Someone pointed at me and
+          said, "Nobody could be scared of <em>her</em>." She laughed: "Don't go by that smile.
+          The whole block is scared of her."
+        </p>
+        <p>
+          Turns out, naughty kids were warned they'd be sent to my class. I could quiet any room,
+          and was invited to train other teachers on how to do it too.
+          <span class="smile" aria-hidden="true"><span>🙂</span><span>😈</span></span>
+        </p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="section beliefs">
+    <h2>Three things I'd say in any room.</h2>
+    <ul class="belief-list">
+      <li data-reveal="rule" style="--i:0">
+        <h3>People are more than they seem.</h3>
+        <p>In good ways and not-so-good ways. That's exactly why kindness and empathy always help.</p>
+      </li>
+      <li data-reveal="rule" style="--i:1">
+        <h3>Kindness doesn't check status.</h3>
+        <p>
+          My father spoke to everyone the same way, whoever they were: kindly. I grew up thinking that's simply
+          how you talk to people. Everyone makes mistakes, they're human. So before I judge, I stand in their shoes.
+        </p>
+      </li>
+      <li data-reveal="rule" style="--i:2">
+        <h3>Culture lives in small moments.</h3>
+        <p>
+          Not in celebrations, gifts and vouchers. In a peer's small gesture, a colleague's helping hand,
+          a leader's fair decision, or someone standing by you when you need it most.
+          The everyday things make a long journey together possible.
+        </p>
+      </li>
+    </ul>
+
+    <blockquote class="big-quote" data-reveal="words">
+      <p>"{quote.split(' ').map((w, i, all) => <><span style={`--i:${i}`}>{w}</span>{i < all.length - 1 && ' '}</>)}"</p>
+      <footer class="hand">It's how I lead, and always will. Learned it from my dad. 💜</footer>
+    </blockquote>
+  </section>
+
+  <section class="rooms">
+    <h2 class="rooms-title">Different rooms, same person.</h2>
+    <ul class="words">
+      <li data-reveal="stamp"><span>Students called me</span> <strong>kind.</strong> <em>(even when I was strict)</em></li>
+      <li data-reveal="stamp"><span>Teammates called me</span> <strong>reachable.</strong></li>
+      <li data-reveal="stamp"><span>Clients called me</span> <strong>helpful.</strong></li>
+    </ul>
+  </section>
+
+  <section class="section dogs" id="dogs">
+    <div class="dogs-text">
+      <h2>Every dog is <span class="nowrap">my dog. 🐾</span></h2>
+      <p class="lead">
+        Mine, strays, the neighbours'... I've loved too many to count. No dream breed, just doggos.
+        <span class="aside">(Except the ones who don't love me back.)</span>
+      </p>
+      <p>Lately, my heart belongs to <strong>Thor</strong>, a beautiful German Shepherd next door.</p>
+      <p class="hand big">One day, no dog near me will ever go hungry.</p>
+    </div>
+    <div class="polaroids" id="paw-zone">
+      <figure class="polaroid p-main tilt" data-reveal="pin" style="--i:0">
+        <Photo name="thor" as="div" alt="Thor, a German Shepherd" label="Thor 🐕" widths={[500, 900]} sizes="(max-width: 860px) 80vw, 440px" />
+        <figcaption>Thor, my current favourite</figcaption>
+      </figure>
+      <figure class="polaroid p2 tilt" data-reveal="pin" style="--i:1">
+        <Photo name="dog-1" as="div" alt="A dog I love" label="🐶" widths={[300, 600]} sizes="(max-width: 860px) 40vw, 220px" />
+        <figcaption>a good boy</figcaption>
+      </figure>
+      <figure class="polaroid p3 eaten tilt" data-reveal="pin" style="--i:2" aria-label="A joke photo frame with bite marks: a dog ate this image">
+        <div class="pic chewed"><span>🐕<br>A dog ate<br>this image.</span></div>
+        <figcaption>no regrets</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section kitchen" id="kitchen">
+    <h2>I can create or destroy any dish.</h2>
+    <p class="hand says">says my husband 🙃</p>
+
+    <div class="recipe-grid">
+      <article class="recipe tilt" data-reveal="deal" style="--i:0">
+        <p class="r-tag">Signature</p>
+        <h3>Paneer Butter Masala</h3>
+        <p>The one everyone asks for. Mostly Indian at heart, always.</p>
+      </article>
+      <article class="recipe tilt" data-reveal="deal" style="--i:1">
+        <p class="r-tag">Proudest moment</p>
+        <h3>Eggs Benedict</h3>
+        <p>The hollandaise came out gorgeous on the very first try. I was SO proud.</p>
+      </article>
+      <article class="recipe tilt" data-reveal="deal" style="--i:2">
+        <p class="r-tag">Biggest adventure</p>
+        <h3>Lockdown bread</h3>
+        <p>The bread came out awesome. The microwave did not survive. 🫠</p>
+      </article>
+      <article class="recipe tilt" data-reveal="deal" style="--i:3">
+        <p class="r-tag">Inspiration</p>
+        <h3>MasterChef Australia</h3>
+        <p>Watching it means trying their recipes. Trying their recipes means... see the title above.</p>
+      </article>
+    </div>
+
+    <div class="cooking glow halo" data-reveal="rise">
+      <span class="pot" aria-hidden="true">🍳</span>
+      <div>
+        <h3>Something's cooking...</h3>
+        <p>A new project where my love for food meets something bigger. Coming soon.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section journey" id="journey">
+    <h2>From the classroom to the boardroom.<br><span class="hand accent">(same heart, bigger rooms)</span></h2>
+
+    <div class="numbers">
+      <div class="stat"><strong data-count="20" data-suffix="+">20+</strong><span>years developing people</span></div>
+      <div class="stat"><strong data-count="2000" data-suffix="+">2,000+</strong><span>students taught</span></div>
+      <div class="stat"><strong data-count="50" data-suffix="+">50+</strong><span>organisations advised</span></div>
+    </div>
+
+    <ol class="timeline">
+      <li data-reveal="step">
+        <span class="when">2003 - 2018</span>
+        <div class="step">
+          <span class="chip">🍎 The classroom</span>
+          <h3>Educator, then Academic Coordinator &amp; Internal Auditor</h3>
+          <p>
+            15 years across six K-12 schools in Agra, Greater Noida and Chennai. I mentored a team of
+            24 teachers, ran training workshops, welcomed new faculty, and kept quality high through audits.
+          </p>
+          <p class="highlight">
+            2,000+ students later, some are in college now, and they still reach out to say <Scribble>I believed in them</Scribble>.
+            That never gets old.
+          </p>
+        </div>
+      </li>
+
+      <li data-reveal="step">
+        <span class="when">2019 - now</span>
+        <div class="step">
+          <span class="chip">🚀 Uniify</span>
+          <h3>Co-founder &amp; CHRO</h3>
+          <p>
+            I collected people's stories, and in them I found a problem worth solving: engagement, wellbeing
+            and internal comms are deeply connected, yet most organisations manage them in silos.
+            So we built Uniify to bring them together, so HR teams could see culture, act on it, and prove its impact.
+          </p>
+          <p>
+            I owned the full employee journey for our own teams, from hiring and onboarding to engagement,
+            performance and exits, while advising HR leaders at 50+ organisations across industries and countries.
+          </p>
+          <div class="story glow">
+            <p class="story-title">Our first client came from 3,000 km away, in an industry we weren't sure about.</p>
+            <p>
+              Two wonderful women in Georgia took Uniify for a 2-month pilot. They worked in the casino space
+              and doubted it would fit. One month in, they came back asking for a full subscription.
+              Peer recognition went up 121% in a quarter.
+            </p>
+            <p class="hand">It worked where even we weren't sure it would. That's when we knew.</p>
+          </div>
+          <div class="award glow halo">
+            <span class="trophy" aria-hidden="true">🏆</span>
+            <div>
+              <h4>Women in HR Tech, People's Choice Award 2024</h4>
+              <p>For my contributions to HR tech through Uniify. Seeing my name next to so many wonderful women in this space? Awesome.</p>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li data-reveal="step">
+        <span class="when">2023 - now</span>
+        <div class="step">
+          <span class="chip">🤝 HRIN</span>
+          <h3>Founding Member &amp; Community Admin</h3>
+          <p>
+            Helped shape HRIN, a closed, vetted global community for HR professionals, from its early days.
+            Today I keep it a trusted space by vetting members and curating conversations.
+          </p>
+        </div>
+      </li>
+
+      <li data-reveal="step">
+        <span class="when">2025 - now</span>
+        <div class="step">
+          <span class="chip">⚖️ Chitkara University</span>
+          <h3>Jury Member</h3>
+          <p>
+            I sit on startup screening and selection committees at the Chitkara Innovation Incubation Foundation
+            for the MeitY GENESIS EiR Program and the Startup India Seed Fund Scheme.
+          </p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="edu">
+      <p class="hand">Studied biology, then English, then HR. Turns out people were always the subject.</p>
+      <ul>
+        <li><strong>PGDBA, Human Resources</strong> Symbiosis Institute of Management Studies</li>
+        <li><strong>M.A., English</strong> Dr. Bhim Rao Ambedkar University, Agra</li>
+        <li><strong>B.Sc., Biology</strong> Dr. Bhim Rao Ambedkar University, Agra</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section bring">
+    <h2>The work I love doing.</h2>
+    <ul class="bring-list">
+      <li><span class="ico" aria-hidden="true">🌱</span><h3>Culture building &amp; onboarding</h3><p>Values people actually live, and a first week people remember.</p></li>
+      <li><span class="ico" aria-hidden="true">🎉</span><h3>Engagement &amp; recognition</h3><p>Calendars, competitions and shout-outs that feel genuine.</p></li>
+      <li><span class="ico" aria-hidden="true">🧘</span><h3>Wellbeing strategy</h3><p>Mental health workshops, health check-ups, walkathons.</p></li>
+      <li><span class="ico" aria-hidden="true">👂</span><h3>Employee listening</h3><p>Surveys and polls that turn into action, not just reports.</p></li>
+      <li><span class="ico" aria-hidden="true">📣</span><h3>Internal &amp; leadership comms</h3><p>From Fun Fridays to town halls: before, during and after.</p></li>
+      <li><span class="ico" aria-hidden="true">📊</span><h3>People analytics &amp; HR tech</h3><p>Data that shows culture, so you can act on it and prove it.</p></li>
+      <li><span class="ico" aria-hidden="true">🔎</span><h3>Talent acquisition</h3><p>Hiring for skills and for heart, with a real culture fit.</p></li>
+    </ul>
+  </section>
+
+  <section class="section lens-teaser">
+    <div class="lens-text">
+      <h2>I click to keep memories alive.</h2>
+      <p>Mostly nature. Always trying to capture the essence of something beautiful before it's gone.</p>
+      <a href="/photos" class="btn btn-primary">See my photos <span aria-hidden="true">📸</span></a>
+    </div>
+    <a href="/photos" class="lens-pair" aria-label="See my photos">
+      <Photo src={lens1} alt="" label="🌿" style="view-transition-name: lens-0" widths={[400, 700]} sizes="(max-width: 860px) 50vw, 300px" />
+      <Photo src={lens2} alt="" label="🌅" style="view-transition-name: lens-1" widths={[400, 700]} sizes="(max-width: 860px) 50vw, 300px" />
+    </a>
+  </section>
+
+  <section class="hello-band">
+    <h2>Want to say hello?</h2>
+    <p>I read every message, usually with a song on repeat.</p>
+    <a href="/contact" class="btn btn-dark">Write to me <span aria-hidden="true">✉️</span></a>
+  </section>
+
+</main>
+</Base>

@@ -1,0 +1,114 @@
+---
+import { getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import { lensPhotos } from '../lib/photos';
+
+const photos = await Promise.all(
+  lensPhotos().map(async src => ({
+    src,
+    full: (await getImage({ src, width: Math.min(1800, src.width), format: 'webp' })).src,
+  })),
+);
+const placeholders = ['🌿', '🌅', '🌸', '⛰️', '🌊', '🍂'];
+---
+<Base title="Photos by Richa Saxena" description="Photographs by Richa Saxena, mostly nature, clicked to keep memories alive.">
+<main>
+  <section class="lens-head">
+    <h1>I click to keep memories alive.</h1>
+    <p class="lens-intro">Mostly nature. Always trying to capture the essence of something beautiful before the moment passes.</p>
+    {photos.length > 0 && <p class="hand">Tap any photo to see it bigger 📸</p>}
+  </section>
+
+  {photos.length > 0 ? (
+    <section class="gallery" id="gallery">
+      {photos.map(({ src, full }, i) => (
+        <button class="tile" type="button" data-full={full} style={`--i:${i % 6}`} data-reveal="develop" aria-label={`Open photo ${i + 1} of ${photos.length}`}>
+          <Photo src={src} as="div" alt="Nature photograph by Richa" style={i < 2 ? `view-transition-name: lens-${i}` : undefined} widths={[400, 700, 1000]} sizes="(max-width: 560px) 50vw, (max-width: 900px) 50vw, 33vw" />
+        </button>
+      ))}
+    </section>
+  ) : (
+    <section class="gallery">
+      {placeholders.map((label, i) => (
+        <Photo alt="" label={label} class="tile-empty" style={i < 2 ? `view-transition-name: lens-${i}` : undefined} />
+      ))}
+      <p class="hand soon">More photos coming soon.</p>
+    </section>
+  )}
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button class="lb-btn lb-close" type="button" aria-label="Close">✕</button>
+  <button class="lb-btn lb-prev" type="button" aria-label="Previous photo">‹</button>
+  <img alt="">
+  <button class="lb-btn lb-next" type="button" aria-label="Next photo">›</button>
+</div>
+
+<script slot="end">
+  const box = document.getElementById('lightbox');
+  const gallery = document.getElementById('gallery');
+  if (box && gallery) {
+    const big = box.querySelector('img');
+    const tiles = [...gallery.querySelectorAll('.tile')];
+    let index = 0;
+    let opener = null;
+
+    // Morph the tapped photo into the viewer, where the browser supports it
+    const morph = (update) => document.startViewTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches
+      ? document.startViewTransition(update)
+      : update();
+
+    const thumb = i => tiles[i].querySelector('img');
+    const show = i => {
+      index = (i + tiles.length) % tiles.length;
+      big.src = tiles[index].dataset.full;
+      big.alt = thumb(index).alt;
+    };
+    const open = i => {
+      opener = tiles[i];
+      thumb(i).style.viewTransitionName = 'zoom';
+      morph(() => {
+        thumb(i).style.viewTransitionName = '';
+        show(i);
+        big.style.viewTransitionName = 'zoom';
+        box.hidden = false;
+        document.body.style.overflow = 'hidden';
+      });
+      box.querySelector('.lb-close').focus();
+    };
+    const close = () => {
+      const t = morph(() => {
+        big.style.viewTransitionName = '';
+        thumb(index).style.viewTransitionName = 'zoom';
+        box.hidden = true;
+        document.body.style.overflow = '';
+      });
+      Promise.resolve(t?.finished).then(() => { thumb(index).style.viewTransitionName = ''; });
+      (tiles[index] || opener)?.focus();
+    };
+
+    tiles.forEach((tile, i) => tile.addEventListener('click', () => open(i)));
+    box.querySelector('.lb-close').addEventListener('click', close);
+    box.querySelector('.lb-prev').addEventListener('click', () => show(index - 1));
+    box.querySelector('.lb-next').addEventListener('click', () => show(index + 1));
+    box.addEventListener('click', e => { if (e.target === box) close(); });
+    document.addEventListener('keydown', e => {
+      if (box.hidden) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(index - 1);
+      if (e.key === 'ArrowRight') show(index + 1);
+    });
+
+    // Swipe on phones
+    let startX = null;
+    box.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener('touchend', e => {
+      if (startX === null) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) show(index + (dx < 0 ? 1 : -1));
+      startX = null;
+    });
+  }
+</script>
+</Base>
